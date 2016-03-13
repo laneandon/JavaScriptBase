@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件流及事件处理</title>
+</head>
+<body>
+1.事件流
+描述的是在页面中国年接受事件的顺序
+<br/>
+2.事件冒泡
+由最具体的元接收,然后逐级想上传播至最不具体的元素节点(文档)
+<br/>
+3.事件捕获
+最不具体的节点先接收事件,而最具体的节点应该是最后解手事件<br/>
+
+
+<br/>
+<h1>事件处理</h1><br/>
+
+1.html事件处理: 直接添加到HTML结构中.<br/>
+
+2.dom0级事件处理<br/>
+把一个函数赋给一个事件处理程序属性<br/>
+
+3.dom2级事件处理<br/>
+addEventListener("事件名","事件处理函数","布尔值");<br/>
+true:事件捕获<br/>
+false:事件冒泡<br/>
+removeEventListener();<br/>
+
+4.IE事件处理程序<br/>
+attachEvent<br/>
+detachEvent
+<br/>
+<br/>
+<div id="div1">
+    <button id="btn1"> Domo0级事件处理程序</button>
+</div>
+
+</body>
+</html>
+
+<script language="javascript">
+    //Dom 0级事件处理程序
+    var btn1 = document.getElementById("btn1");
+    btn1.onclick = function () {
+        alert("Demo0级事件处理程序1");
+    };
+    //btn1.onclick=function(){alert("Demo0级事件处理程序2")};//新的将覆盖掉旧的
+
+    //清楚当前事件
+    btn1.onclick = null;
+</script>
+
+<script language="JavaScript">
+    //Dom 2级事件处理程序,事件不会被覆盖
+    var btn1 = document.getElementById("btn1").addEventListener("click", function () {
+        alert("Dom 2级事件处理程序1");
+    });
+    btn1.addEventListener("click", function () {
+        alert("Deom2级事件处理程序2");
+    });
+
+    //移除事件
+    btn1.removeEventListener("click", demo2);
+
+</script>
+
+
+<script language="javascript">
+    //根据浏览器判断
+    var btn1 = document.getElementById("btn1");
+    if (btn1.addEventListener) {
+        btn1.addEventListener("click", demo);
+    } else if (btn1.attachEvent) {
+        btn1.attachEvent("onClick", demo);
+    } else {
+        btn1.onclick = demo();
+    }
+
+    function demo() {
+        alert("Hello");
+    }
+</script>

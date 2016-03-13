@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Js句柄</title>
+</head>
+<body>
+    <button id="btn1"> 使用句柄按钮 </button>
+
+</body>
+</html>
+<script language="JavaScript">
+    var x =document.getElementById('btn1');
+    x.addEventListener("click",hello);
+    x.addEventListener("click",world);
+    x.removeEventListener("click",world);
+
+    function hello(){
+        alert("Hello");
+    }
+
+    function world(){
+        alert("World");
+    }
+</script>
